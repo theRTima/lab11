@@ -1,0 +1,13 @@
+repo/
+├── .github/workflows/docker-build-push.yml
+├── python-service/
+│   ├── Dockerfile
+│   └── main.py
+├── go-app/
+│   ├── Dockerfile
+│   ├── go.mod
+│   └── cmd/main.go
+└── rust-docker/
+    ├── Dockerfile
+    ├── Cargo.toml
+    └── src/main.rs
