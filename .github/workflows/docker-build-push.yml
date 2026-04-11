@@ -11,8 +11,6 @@ env:
   IMAGE_PREFIX: ${{ github.repository_owner }}
 
 jobs:
-  # ── Python (FastAPI gateway) ──────────────────────────────────────────────────
-  # No Python tests written yet — add a pytest step here when you have them.
   build-python:
     name: Python service
     runs-on: ubuntu-latest
@@ -55,8 +53,6 @@ jobs:
           cache-from: type=gha,scope=python
           cache-to:   type=gha,scope=python,mode=max
 
-
-  # ── Go service ────────────────────────────────────────────────────────────────
   build-go:
     name: Go service
     runs-on: ubuntu-latest
@@ -68,8 +64,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Run tests on the host — faster than inside Docker, and failures
-      # are reported as a named step rather than a buried build log line.
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -104,15 +98,13 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./go-service
+          context: ./go-app
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=go
           cache-to:   type=gha,scope=go,mode=max
 
-
-  # ── Rust service ──────────────────────────────────────────────────────────────
   build-rust:
     name: Rust service
     runs-on: ubuntu-latest
@@ -124,8 +116,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # cargo test on the host is much faster than inside Docker because
-      # Rust compilation in Docker doesn't benefit from the Swatinem cache.
       - name: Set up Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
@@ -162,7 +152,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./rust-app
+          context: ./rust-docker
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
