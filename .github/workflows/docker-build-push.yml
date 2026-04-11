@@ -68,10 +68,10 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: "1.22"
-          cache-dependency-path: go-service/go.sum
+          cache-dependency-path: go-app/go.sum
 
       - name: Run tests
-        working-directory: ./go-service
+        working-directory: ./go-app
         run: go test ./cmd/...
 
       - name: Set up Docker Buildx
@@ -89,7 +89,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/go-service
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/go-app
           tags: |
             type=ref,event=branch
             type=sha,prefix=sha-,format=short
@@ -125,7 +125,7 @@ jobs:
           workspaces: rust-app
 
       - name: Run tests
-        working-directory: ./rust-app
+        working-directory: ./rust-docker
         run: cargo test
 
       - name: Set up Docker Buildx
@@ -143,7 +143,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/rust-service
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}/rust-docker
           tags: |
             type=ref,event=branch
             type=sha,prefix=sha-,format=short
