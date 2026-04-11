@@ -9,10 +9,10 @@
 - Что пришлось исправлять вручную: ничего
 - Время: ~ 3 Минуты
 ---
-## Задание Средней сложности 2:.
+## Задание Средней сложности 2: Написать Dockerfile для Rust-приложения.
 ### Промпт 1
 **Инструмент:** Auto режим в Cursor.
-**Промпт:** ""
+**Промпт:** "Now work in /rust-doker. Create a dokerfile for Rust application. Create a most basic rust app, like hello world."
 **Результат:** 
 ### Итого
 - Количество промптов: 
