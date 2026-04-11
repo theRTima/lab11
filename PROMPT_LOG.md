@@ -57,9 +57,13 @@ go-app       latest    0be3c4ae690c   2 minutes ago   1.85MB
 ### Промпт 1
 **Инструмент:** Auto режим в Cursor.
 **Промпт:** "Create a GitHub Actions CI/CD workflow to automate the building and pushing of Docker images for three separate services: Python, Go, and Rust. Change folder structure to the more useful one."
-**Результат:** 
+**Результат:** Изменение структуры репозитория, файл docker-build-push.yml. Как и задуманно, параллельно работает и пушит 3 приложения. Теперь на страинце репозитория доступны 3 package к загрузке.
+### Промпт 2
+**Инструмент:** Auto режим в Cursor.
+**Промпт:** "Add a simple go and rust tests for apps."
+**Результат:** Изменение структуры репозитория, файл docker-build-push.yml. Как и задуманно, параллельно работает и пушит 3 приложения. Теперь на страинце репозитория доступны 3 package к загрузке.
 ### Итого
 - Количество промптов: 1
-- Что пришлось исправлять вручную: ничего
-- Время: ~ 5 минут
+- Что пришлось исправлять вручную: Менял пути к каждому приложению.
+- Время: ~ 15 минут
 ---
